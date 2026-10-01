@@ -17,5 +17,5 @@ rootProject.name = "openiisu"
 include(":core")
 // The Android app needs an SDK; skip it where none is configured (e.g. core-only CI).
 if (System.getenv("ANDROID_HOME") != null || file("local.properties").exists()) include(":app")
-// Desktop (macOS/Linux/Windows JVM) app: enable with -Pdesktop.
-if (providers.gradleProperty("desktop").isPresent) include(":desktop")
+// Desktop (macOS/Linux/Windows JVM) app; skip with -Pnodesktop.
+if (!providers.gradleProperty("nodesktop").isPresent) include(":desktop")
