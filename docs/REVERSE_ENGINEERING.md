@@ -63,3 +63,7 @@ The launcher does not emulate. It scans ROM folders per console and fires Androi
 3. Playtime tracker (foreground-app session timing) with Room.
 4. RetroAchievements via upstream rcheevos (open source) rather than the shipped binary.
 5. Remaining UI/theme behaviour requires deeper reading of the obfuscated `defpackage` classes; `MainActivity` is the entry point.
+
+## Project layout (skeleton)
+- `core/` – pure Kotlin/JVM: config models + JSONC loader, `am start`-style command parser (`CommandTemplate`) producing an `IntentSpec`. Tested with `gradle :core:test`.
+- `app/` – Android + Compose shell (HOME-capable `MainActivity`, `EmulatorLauncher` mapping `IntentSpec` -> `Intent`). Included only when `ANDROID_HOME` or `local.properties` exists; **not yet built** (no Android SDK in the dev container).
