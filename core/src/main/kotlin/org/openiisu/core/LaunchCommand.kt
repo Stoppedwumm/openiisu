@@ -42,8 +42,13 @@ object CommandTemplate {
             .replace("%ROM%", romValue)
     }
 
-    fun parse(expanded: String): IntentSpec {
-        val tokens = tokenize(expanded)
+    fun parse(expanded: String): IntentSpec = parseTokens(tokenize(expanded))
+
+    /** Splits the template first, then substitutes per token, so paths containing spaces stay one argument. */
+    fun expandTokens(template: String, pkg: String, rom: RomContext, route: RouteType): List<String> =
+        tokenize(template).map { expand(it, pkg, rom, route) }
+
+    fun parseTokens(tokens: List<String>): IntentSpec {
         require(tokens.isNotEmpty()) { "empty command" }
         val first = tokens[0]
         val (pkg, activity) = if ('/' in first) first.substringBefore('/') to first.substringAfter('/') else first to null
@@ -91,5 +96,5 @@ object CommandTemplate {
 
     /** One IntentSpec per candidate package, in declared order. */
     fun build(emulator: EmulatorConfig, command: LaunchCommand, rom: RomContext): List<IntentSpec> =
-        emulator.packages.map { parse(expand(command.command, it, rom, emulator.routeType)) }
+        emulator.packages.map { parseTokens(expandTokens(command.command, it, rom, emulator.routeType)) }
 }

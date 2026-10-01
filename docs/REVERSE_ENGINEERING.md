@@ -64,6 +64,19 @@ The launcher does not emulate. It scans ROM folders per console and fires Androi
 4. RetroAchievements via upstream rcheevos (open source) rather than the shipped binary.
 5. Remaining UI/theme behaviour requires deeper reading of the obfuscated `defpackage` classes; `MainActivity` is the entry point.
 
-## Project layout (skeleton)
-- `core/` – pure Kotlin/JVM: config models + JSONC loader, `am start`-style command parser (`CommandTemplate`) producing an `IntentSpec`. Tested with `gradle :core:test`.
-- `app/` – Android + Compose shell (HOME-capable `MainActivity`, `EmulatorLauncher` mapping `IntentSpec` -> `Intent`). Included only when `ANDROID_HOME` or `local.properties` exists; **not yet built** (no Android SDK in the dev container).
+## Project layout
+- `core/` – pure Kotlin/JVM, shared by every platform (`gradle :core:test`, 13 tests):
+  - `Config`, `LaunchCommand` – iiSU config models, JSONC loader, `am start`-style command parser (templates are tokenised *before* substitution so ROM paths with spaces stay one argument).
+  - `RomScanner` – scans `<root>/<console shortName>/`, case-sensitive extensions, cleaned titles.
+  - `Playtime` – session tracker with JSON persistence.
+  - `Library` – per-console emulator choice (`default_emulator_options.json` format) and a metadata cache.
+  - `Scrapers` – TheGamesDB and SteamGridDB clients (injectable HTTP, parsers fixture-tested); ScreenScraper not yet implemented.
+  - `Hashing` – MD5 RetroAchievements hashes for cartridge systems (NES header-stripped); disc systems still need rcheevos.
+  - `Mac`, `Launch` – macOS emulator catalog (`docs/reference/macos_emulators.jsonc`), `/Applications` detection, `open -a` / direct-executable process specs.
+- `app/` – Android + Compose shell. Included only with `ANDROID_HOME`/`local.properties`; **not built yet** (no SDK in the dev container).
+- `desktop/` – Compose Desktop app (macOS `.dmg` via `gradle -Pdesktop :desktop:packageDmg`, run with `:desktop:run`). Compiles on Linux; **never run on a Mac yet**. ROM folder defaults to `~/ROMs` (override `-Dopeniisu.roms=`); data in `~/Library/Application Support/openiisu`.
+
+## Known gaps
+- Desktop playtime only starts a session; it ends when the next game starts (no process/focus tracking yet).
+- The macOS RetroArch core paths and emulator flags in `macos_emulators.jsonc` are unverified guesses.
+- Not ported: Discord, notification listener, calendar widget, dual-screen, themes/audio.

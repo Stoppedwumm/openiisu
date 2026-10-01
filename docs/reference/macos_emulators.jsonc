@@ -1,0 +1,38 @@
+{
+  // macOS emulator definitions (openiisu-specific; iiSU itself is Android only).
+  // Placeholders: %ROM% / %ROM_PATH% (file path), %ROM_DIR%, %ROM_NAME%, %APP% (bundle path).
+  // "executable" set  -> run <App>/Contents/MacOS/<executable> <args...>
+  // "executable" null -> open -n -a <App> --args <args...>
+  "consoles": [
+    {
+      "shortName": "gb",
+      "emulators": [
+        {
+          "id": "retroarch", "name": "RetroArch", "app": "RetroArch.app", "executable": "RetroArch",
+          "commands": [
+            { "description": "Gambatte core", "command": "-L %APP%/Contents/Resources/cores/gambatte_libretro.dylib %ROM%" },
+            { "description": "SameBoy core", "command": "-L %APP%/Contents/Resources/cores/sameboy_libretro.dylib %ROM%" }
+          ]
+        }
+      ]
+    },
+    {
+      "shortName": "nds",
+      "emulators": [
+        { "id": "melonds", "name": "melonDS", "app": "melonDS.app", "commands": [ { "description": "melonDS", "command": "%ROM%" } ] }
+      ]
+    },
+    {
+      "shortName": "gc",
+      "emulators": [
+        { "id": "dolphin", "name": "Dolphin", "app": "Dolphin.app", "executable": "Dolphin", "commands": [ { "description": "Dolphin", "command": "-b -e %ROM%" } ] }
+      ]
+    },
+    {
+      "shortName": "ps2",
+      "emulators": [
+        { "id": "pcsx2", "name": "PCSX2", "app": "PCSX2.app", "executable": "PCSX2", "commands": [ { "description": "PCSX2", "command": "-batch -- %ROM%" } ] }
+      ]
+    }
+  ]
+}
