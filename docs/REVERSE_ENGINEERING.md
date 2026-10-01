@@ -74,7 +74,7 @@ The launcher does not emulate. It scans ROM folders per console and fires Androi
   - `Hashing` – MD5 RetroAchievements hashes for cartridge systems (NES header-stripped); disc systems still need rcheevos.
   - `Mac`, `Launch` – macOS emulator catalog (`docs/reference/macos_emulators.jsonc`), `/Applications` detection, `open -a` / direct-executable process specs.
 - `app/` – Android + Compose shell. Included only with `ANDROID_HOME`/`local.properties`; **not built yet** (no SDK in the dev container).
-- `desktop/` – Compose Desktop app (macOS `.dmg` via `./gradlew :desktop:packageDmg`, run with `./gradlew :desktop:run`). Compiles on Linux; **never run on a Mac yet**. ROM folder defaults to `~/ROMs` (override `-Dopeniisu.roms=`); data in `~/Library/Application Support/openiisu`.
+- `desktop/` – Compose Desktop launcher with three layouts (Grid, XMB, Pages; keys: arrows, Enter, [ ], 1/2/3, D, R) in a light, rounded style inspired by the iiSU presentation video. Compose Desktop app (macOS `.dmg` via `./gradlew :desktop:packageDmg`, run with `./gradlew :desktop:run`). Compiles on Linux; **never run on a Mac yet**. ROM folder defaults to `~/ROMs` (override `-Dopeniisu.roms=`); data in `~/Library/Application Support/openiisu`.
 
 ## Known gaps
 - Desktop playtime only starts a session; it ends when the next game starts (no process/focus tracking yet).

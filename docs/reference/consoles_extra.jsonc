@@ -1,0 +1,17 @@
+{
+  // Extra consoles for the desktop app (the reference config only ships GB).
+  "consoles": [
+    {"shortName":"nes","longName":"Nintendo Entertainment System","manufacturer":"Nintendo","romExtensions":[".nes", ".NES", ".zip"]},
+    {"shortName":"snes","longName":"Super Nintendo","manufacturer":"Nintendo","romExtensions":[".sfc", ".smc", ".zip"]},
+    {"shortName":"gbc","longName":"Nintendo Game Boy Color","manufacturer":"Nintendo","romExtensions":[".gbc", ".GBC", ".zip"]},
+    {"shortName":"gba","longName":"Nintendo Game Boy Advance","manufacturer":"Nintendo","romExtensions":[".gba", ".GBA", ".zip"]},
+    {"shortName":"nds","longName":"Nintendo DS","manufacturer":"Nintendo","romExtensions":[".nds", ".NDS", ".zip"]},
+    {"shortName":"n64","longName":"Nintendo 64","manufacturer":"Nintendo","romExtensions":[".z64", ".n64", ".v64", ".zip"]},
+    {"shortName":"gc","longName":"Nintendo GameCube","manufacturer":"Nintendo","romExtensions":[".iso", ".gcm", ".rvz", ".ciso"]},
+    {"shortName":"wii","longName":"Nintendo Wii","manufacturer":"Nintendo","romExtensions":[".iso", ".wbfs", ".rvz"]},
+    {"shortName":"genesis","longName":"Sega Genesis","manufacturer":"Sega","romExtensions":[".md", ".gen", ".bin", ".zip"]},
+    {"shortName":"psx","longName":"Sony PlayStation","manufacturer":"Sony","romExtensions":[".cue", ".chd", ".pbp"]},
+    {"shortName":"ps2","longName":"Sony PlayStation 2","manufacturer":"Sony","romExtensions":[".iso", ".chd", ".bin"]},
+    {"shortName":"psp","longName":"Sony PSP","manufacturer":"Sony","romExtensions":[".iso", ".cso", ".pbp"]}
+  ]
+}

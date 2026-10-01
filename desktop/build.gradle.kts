@@ -15,6 +15,7 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "org.openiisu.desktop.MainKt"
+        providers.gradleProperty("romRoot").orNull?.let { jvmArgs += "-Dopeniisu.roms=$it" }
         nativeDistributions {
             targetFormats(TargetFormat.Dmg)
             packageName = "openiisu"
