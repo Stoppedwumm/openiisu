@@ -80,3 +80,6 @@ The launcher does not emulate. It scans ROM folders per console and fires Androi
 - Desktop playtime only starts a session; it ends when the next game starts (no process/focus tracking yet).
 - The macOS RetroArch core paths and emulator flags in `macos_emulators.jsonc` are unverified guesses.
 - Not ported: Discord, notification listener, calendar widget, dual-screen, themes/audio.
+
+## Building
+Use the wrapper (`./gradlew`), pinned to Gradle 8.10.2 – AGP 8.7.3 / Kotlin 2.0.21 are not validated against Gradle 9.x. A full Android + Compose build needs several GB free in `~/.gradle` and the SDK.
