@@ -1,0 +1,19 @@
+{
+  "consoles": [
+    {
+      "shortName": "gb",
+      "emulator": "RetroArch",
+      "commandLabel": "Default",
+      "routeType": "uri",
+      "launchPreference": "Ask"
+    },
+    {
+      "shortName": "nds",
+      "emulator": "melonDS (Standalone)",
+      "commandLabel": "melonDS",
+      "routeType": "uri",
+      "launchPreference": "Internal"
+    }
+
+  ]
+}

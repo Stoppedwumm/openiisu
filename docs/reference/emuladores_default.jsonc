@@ -1,0 +1,85 @@
+{
+  // Default emulator configuration shipped with iiSU Launcher.
+  // Feel free to duplicate entries, change ROM extensions or commands as needed.
+  "consoles": [
+    {
+      // Short identifier used internally and as the folder name for this console.
+      "shortName": "gb",
+
+      // Display name presented to the user.
+      "longName": "Nintendo Game Boy",
+
+      // Year the system was released (string).
+      "releaseYear": "1989",
+
+      // Full release date in YYYY/MM/DD format (string).
+      "releaseDate": "1989/04/21",
+
+      // System manufacturer or brand.
+      "manufacturer": "Nintendo",
+
+      // Optional RetroAchievements console identifier.
+      // Use "NA" when not configured, or replace with the numeric ID (e.g. 4 for GB).
+      "retroAchievementsId": "NA",
+
+      // Accepted ROM file extensions. They are case sensitive, so include upper/lowercase if required.
+      "romExtensions": [
+        ".bs", ".BS", ".cgb", ".CGB",
+        ".dmg", ".DMG", ".gb", ".GB",
+        ".gbc", ".GBC", ".sgb", ".SGB",
+        ".sfc", ".SFC", ".smc", ".SMC",
+        ".7z", ".7Z", ".zip", ".ZIP"
+      ],
+
+      // Emulators available for this console.
+      "emulators": [
+        {
+          // Unique identifier that matches the supported emulator list.
+          "id": "retroarch",
+
+          // Friendly name that will be displayed to the user.
+          "name": "RetroArch",
+
+          // How to interpret the launch route:
+          //  - "path" → use filesystem paths (%ROM_PATH% / %ROM%)
+          //  - "uri"  → use SAF URIs (%ROM_URI%)
+          "routeType": "path",
+
+          // For RetroArch we always declare the three official packages.
+          // %PACKAGE% in the command will be replaced with each of these values.
+          "packages": [
+            "com.retroarch",
+            "com.retroarch.aarch64",
+            "com.retroarch.ra32"
+          ],
+
+          // Launch commands available for this emulator.
+          //
+          // Placeholders:
+          //  - %ROM%       → path or URI depending on routeType
+          //  - %ROM_PATH%  → resolved filesystem path (when available)
+          //  - %ROM_URI%   → original URI (SAF or file://)
+          //  - %ROM_DIR%   → directory URI that contains the ROM
+          //  - %ROM_NAME%  → display name of the ROM
+          //  - %PACKAGE%   → each package name listed above
+          "commands": [
+            {
+              // Description for the RetroArch core that will appear in the UI.
+              "description": "Gambatte core",
+
+              // Actual command executed to start the game with this core.
+              // The launcher will:
+              //  1) Replace %PACKAGE% with each candidate package.
+              //  2) Replace %ROM% / %ROM_PATH% / %ROM_URI% depending on routeType.
+              "command": "%PACKAGE%/com.retroarch.browser.retroactivity.RetroActivityFuture -e CONFIGFILE %EXTERNAL_STORAGE%/Android/data/%PACKAGE%/files/retroarch.cfg -e LIBRETRO gambatte_libretro_android.so -e ROM %ROM% --activity-clear-top"
+            },
+            {
+              "description": "SameBoy core",
+              "command": "%PACKAGE%/com.retroarch.browser.retroactivity.RetroActivityFuture -e CONFIGFILE %EXTERNAL_STORAGE%/Android/data/%PACKAGE%/files/retroarch.cfg -e LIBRETRO sameboy_libretro_android.so -e ROM %ROM% --activity-clear-top"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
